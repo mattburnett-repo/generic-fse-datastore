@@ -4,6 +4,7 @@ This repo contains code to create a datastore / API for the Feather FSE code cha
 https://github.com/getPopsure/fullstack-engineer-challenge
 
 The API can be viewed at \
+feather-datastore
 (put url here once we deploy)
 
 Data provided by this datastore is consumed by an ApolloGL client / React app.

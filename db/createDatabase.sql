@@ -8,6 +8,11 @@
 --          results in error -> psql: error: connection to server on socket "/tmp/.s.PGSQL.5432" failed: FATAL:  database "feather_fullstack_code_challenge" does not exist
 --      trying to fix this with various permutations of command line args just results in more errors that just don't make sense
 
+-- HEROKU CLI, push database changes to prod
+--      *** this pushes local version of db to heroku, so locally do creates / inserts before these two ***
+-- 1). heroku pg:reset HEROKU_POSTGRESQL_ONYX --confirm e-commerce-rest-api-v2
+-- 2). heroku pg:push feather_fullstack_code_challenge DATABASE_URL --app feather-datastore
+
 BEGIN;
 
 DROP TABLE IF EXISTS policy CASCADE;
