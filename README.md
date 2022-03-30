@@ -3,9 +3,10 @@
 This repo contains code to create a datastore / API for the Feather FSE code challenge \
 https://github.com/getPopsure/fullstack-engineer-challenge
 
-The API can be viewed at \
+The API can be viewed at https://feather-api-v1.herokuapp.com/api/v1/api-docs/
+
+The database is deployed on Heroku as \
 feather-datastore
-(put url here once we deploy)
 
 Data provided by this datastore is consumed by an ApolloGL client / React app.
 Code for the ApolloGL client / React app can be found here: \
@@ -48,19 +49,23 @@ Insert data
 npm run insertData
 ```
 
-You will need the following .env variables \
-DATABASE_USER_NAME= \
-DATABASE_PASSWORD= \
-DATABASE_NAME=feather_fullstack_code_challenge \
-DATABASE_HEROKU_APP_NAME= \
-DATABASE_HEROKU_DATABASE_NAME= \
-DATABASE_HEROKU_URL: \
-DATABASE_HOSTNAME= \
-DATABASE_PORT= 
+You will need the following .env variables for the database:
+```bash
+DATABASE_USER_NAME=postgres
+DATABASE_PASSWORD=postgres
+DATABASE_NAME=feather_fullstack_code_challenge 
+DATABASE_HOSTNAME=localhost
+DATABASE_PORT=5432 
 
 REACT_APP_APP_BASE_URL=
+```
 
-Start the app
+Start the app in dev mode (nodemon)
+```bash
+npm run dev
+```
+
+Start the app (node)
 ```bash
 npm run start
 ```

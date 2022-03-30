@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var db = require('../db');
-// const { isAuthenticated } = require('../loaders/passportLoader');
 
 module.exports = (app) => {
   app.use('/api/v1/policy', router);

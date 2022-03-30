@@ -2,7 +2,7 @@
   "name": "fullstack-engineer-challenge-datastore",
   "version": "1.0.0",
   "description": "This is the datastore / api for the Feather Fullstack Engineer Code Challenge",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
     "start": "node ./index.js",
     "dev": "nodemon ./index.js",
@@ -14,7 +14,7 @@
     "testOnce": "mocha -b --exit"
   },
   "keywords": [],
-  "author": "",
+  "author": "Matt Burnett",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.2",

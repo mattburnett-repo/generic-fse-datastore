@@ -2,16 +2,20 @@
 -- create postgresql database as data store
 
 -- psql postgres -d feather_fullstack_code_challenge -f ./db/createDatabase.sql
+-- or: npm run createDB
 
 -- *** Create database in Postbird / some other Postgres tool of choice. ***
---      trying to run -> psql postgres -d feather_fullstack_code_challenge -f -a ./db/createDatabase.sql
+--      trying to run CREATE DATABASE commands in this file, ie -> psql postgres -d feather_fullstack_code_challenge -f -a ./db/createDatabase.sql
 --          results in error -> psql: error: connection to server on socket "/tmp/.s.PGSQL.5432" failed: FATAL:  database "feather_fullstack_code_challenge" does not exist
---      trying to fix this with various permutations of command line args just results in more errors that just don't make sense
+--      trying to fix this with various permutations of command line args results in more errors that just don't make sense
+--          and is taking too much time to resolve
 
--- HEROKU CLI, push database changes to prod
+-- HEROKU CLI: push database changes to Heroku server after running this create script and the insert script
 --      *** this pushes local version of db to heroku, so locally do creates / inserts before these two ***
--- 1). heroku pg:reset HEROKU_POSTGRESQL_ONYX --confirm e-commerce-rest-api-v2
+-- 1). heroku heroku pg:reset --app feather-datastore
+--      or: npm run herokuDbReset
 -- 2). heroku pg:push feather_fullstack_code_challenge DATABASE_URL --app feather-datastore
+--      or: npm run herokuDbPush
 
 BEGIN;
 

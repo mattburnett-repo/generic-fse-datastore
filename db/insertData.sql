@@ -1,9 +1,11 @@
 
 -- RUN CREATE SCRIPT USING FOLOWING LINE
 -- psql postgres -d feather_fullstack_code_challenge -f ./db/createDatabase.sql
+-- you can also use: npm run createDB
 
 -- RUN THIS TO ADD MINIMAL TEST DATA (this file)
 -- psql postgres -d feather_fullstack_code_challenge -f ./db/insertData.sql
+-- you can also use: npm run insertData
 
 -- POLICY STATUS 
 INSERT INTO policy_status(id, description) VALUES (1, 'Active');
