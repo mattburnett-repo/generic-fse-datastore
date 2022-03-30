@@ -56,8 +56,6 @@ DATABASE_PASSWORD=postgres
 DATABASE_NAME=feather_fullstack_code_challenge 
 DATABASE_HOSTNAME=localhost
 DATABASE_PORT=5432 
-
-REACT_APP_APP_BASE_URL=
 ```
 
 Start the app in dev mode (nodemon)
