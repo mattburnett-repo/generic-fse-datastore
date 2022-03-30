@@ -4,11 +4,14 @@
   "description": "This is the datastore / api for the Feather Fullstack Engineer Code Challenge",
   "main": "index.js",
   "scripts": {
+    "start": "node ./index.js",
+    "dev": "nodemon ./index.js",
     "createDB": "psql postgres -d feather_fullstack_code_challenge -f ./db/createDatabase.sql",
     "insertData": "psql postgres -d feather_fullstack_code_challenge -f ./db/insertData.sql",
     "herokuDbReset": "heroku pg:reset HEROKU_POSTGRESQL_ONYX --confirm e-commerce-rest-api-v2",
     "herokuDbPush": "heroku pg:push codecademy_ecommerce_rest_api_v2 HEROKU_POSTGRESQL_ONYX --app e-commerce-rest-api-v2",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -w",
+    "testOnce": "mocha -b --exit"
   },
   "keywords": [],
   "author": "",
@@ -26,7 +29,6 @@
   },
   "devDependencies": {
     "chai": "^4.3.6",
-    "chai-http": "^4.3.0",
     "dotenv": "^16.0.0",
     "mocha": "^9.2.2",
     "nodemon": "^2.0.15",

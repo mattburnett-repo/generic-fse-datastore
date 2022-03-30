@@ -18,6 +18,7 @@ DROP TABLE IF EXISTS policy_status CASCADE;
 
 CREATE TABLE policy
 (
+    id SERIAL PRIMARY KEY,
     customer_id integer NOT NULL,
     provider_id integer NOT NULL,
     insurance_type_id integer NOT NULL,
@@ -39,6 +40,7 @@ CREATE TABLE customer
 CREATE TABLE provider
 (
     id integer UNIQUE NOT NULL,
+    prefix_code character varying(3) UNIQUE NOT NULL,
     description character varying(25) NOT NULL
 );
 

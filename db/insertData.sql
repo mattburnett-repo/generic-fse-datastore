@@ -17,10 +17,10 @@ INSERT INTO insurance_type(id, description) VALUES (2, 'Household');
 INSERT INTO insurance_type(id, description) VALUES (3, 'Health');
 
 -- PROVIDER
-INSERT INTO provider(id, description) VALUES (1, 'Allianz');
-INSERT INTO provider(id, description) VALUES (2, 'AXA');
-INSERT INTO provider(id, description) VALUES (3, 'ERGO Insurance Group');
-INSERT INTO provider(id, description) VALUES (4, 'DKV');
+INSERT INTO provider(id, prefix_code, description) VALUES (1, 'ALL', 'Allianz');
+INSERT INTO provider(id, prefix_code,  description) VALUES (2, 'AXA', 'AXA');
+INSERT INTO provider(id, prefix_code,  description) VALUES (3, 'ERG', 'ERGO Insurance Group');
+INSERT INTO provider(id, prefix_code,  description) VALUES (4, 'DKV', 'DKV');
 
 -- CUSTOMER
 INSERT INTO customer(first_name, last_name, date_of_birth) VALUES('firstName 01', 'lastName 01', to_timestamp('1970-01-01', 'YYYY-MM-DD'));
