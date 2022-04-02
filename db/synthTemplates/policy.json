@@ -1,0 +1,66 @@
+{
+    "type": "array",
+    "length": {
+        "type": "number",
+        "constant": 1000
+    },
+    "content": {
+        "type": "object",
+        "customer_id": {
+            "type": "number",
+            "range": {
+                "low": 1,
+                "high": 505,
+                "step": 1
+            }
+        },
+        "provider_id": {
+            "type": "number",
+            "range": {
+                "low": 1,
+                "high": 4,
+                "step": 1
+            }
+        },
+        "insurance_type_id": {
+            "type": "number",
+            "range": {
+                "low": 1,
+                "high": 3,
+                "step": 1
+            }
+        },
+        "status_id": {
+            "type": "number",
+            "range": {
+                "low": 1,
+                "high": 4,
+                "step": 1
+            }
+        },
+        "policy_number": {
+            "type": "string",
+            "faker": {
+                "generator": "credit_card"
+            }
+        },
+        "start_date": {
+            "type": "date_time",
+            "format": "%Y-%m-%d",
+            "begin": "1970-01-01",
+            "end": "2002-12-31",
+            "faker": {
+                "generator": "date"
+            }
+        },
+        "end_date": {
+            "type": "date_time",
+            "format": "%Y-%m-%d",
+            "begin": "2002-01-01",
+            "end": "2022-12-31",
+            "faker": {
+                "generator": "date"
+            }
+        }
+    }
+}

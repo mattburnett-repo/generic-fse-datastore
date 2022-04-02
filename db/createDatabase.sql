@@ -10,7 +10,15 @@
 --      trying to fix this with various permutations of command line args results in more errors that just don't make sense
 --          and is taking too much time to resolve
 
--- HEROKU CLI: push database changes to Heroku server after running this create script and the insert script
+-- Run insertBaseData.sql to create basic records. UI testing expects this data to be in the database
+-- Run on command line
+--      synth generate db/synthTemplates --to postgres://postgres:postgress@localhost:5432/feather_fullstack_code_challenge
+--      OR
+--      npm run insertBulkData
+--  to generate filler data
+--  *** THIS WILL GENERATE SOME WARNINGS ABOUT INTEGER TYPES. YOU CAN IGNORE THESE
+
+-- HEROKU CLI: push database changes to Heroku server after running this create script and the insert script/s
 --      *** this pushes local version of db to heroku, so locally do creates / inserts before these two ***
 -- 1). heroku heroku pg:reset --app feather-datastore
 --      or: npm run herokuDbReset
@@ -83,4 +91,5 @@ ALTER TABLE policy
 
 END;
 
-SELECT '*** Run insertTestData.sql to add minimal test data ***' AS do_this_next;
+SELECT '*** Run insertBaseData.sql to add minimal test data ***', '*** Run generateBulkData.sql to add filler data ***' 
+AS do_this_next;
