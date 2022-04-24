@@ -9,12 +9,10 @@ var app = express();
 const loaders = require('./loaders');
 loaders(app); 
 
-var PORT = process.env.PORT;
+var PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 })
-
-console.log('process.env.NODE_ENV: ', process.env.NODE_ENV)
 
 module.exports = app;

@@ -7,7 +7,7 @@ module.exports = (app) => {
   app.use('/api/v1/policy', router);
 
   router.get('/', async function(req, res) {
-    const queryString = "SELECT * FROM policy";
+    const queryString = "SELECT * FROM policy ORDER BY id";
     
     try {
       const result = await db.query(queryString);
@@ -40,4 +40,49 @@ module.exports = (app) => {
       res.status(400).send({message: e.message});
     }
   });
+
+  router.patch('/', async (req, res) => {
+    try {
+      const policyId = req.body.id
+      const keys = Object.keys(req.body)
+
+      let customerId, queryString, theVals, result
+
+      const getCustomerIdFromPolicyId = async (policyId) => {
+        const result = await db.query(`SELECT customer_id FROM policy WHERE id = ${policyId}`);
+
+        return result.rows[0].customer_id
+      }
+
+      // look at the keys of the request body object
+      //    if we have a var that we are looking for in the keys,
+      //      then we have a value for that key in req.body
+      //    update the key field with the provided value
+      if(keys.includes('firstName')) {
+        customerId = await getCustomerIdFromPolicyId(policyId)
+        queryString = `UPDATE customer SET first_name = $1 WHERE id = $2`
+        theVals = [req.body.firstName, parseInt(customerId, 10)]
+        result = await db.query(queryString, theVals);
+
+        res.status(200).send({message: `policyRoutes.patch --- policyId: ${policyId}, firstName: ${req.body.firstName}`})
+      } else if (keys.includes('lastName')) {
+        customerId = await getCustomerIdFromPolicyId(policyId)
+        queryString = `UPDATE customer SET last_name = $1 WHERE id = $2`
+        theVals = [req.body.lastName, parseInt(customerId, 10)]
+        result = await db.query(queryString, theVals);
+
+        res.status(200).send({message: `policyRoutes.patch --- policyId: ${policyId}, lastName: ${req.body.lastName}`})
+      } else if (keys.includes('policyNumber')) {
+        queryString = `UPDATE policy SET policy_number = $1 WHERE id = $2`
+        theVals = [req.body.policyNumber, parseInt(policyId, 10)]
+        result = await db.query(queryString, theVals);
+
+        res.status(200).send({message: `policyRoutes.patch --- policyId: ${policyId}, policyNumber: ${req.body.policyNumber}`})
+      } else {
+        throw new Error(`Can't determine which field to update. Received ${Object.entries(req.body)} for policyId ${policyId}`)
+      }
+    } catch(e) {
+      res.status(400).send({message: `Error in policyRoutes.patch:  ${e.message}`})
+    }
+  })
 }
