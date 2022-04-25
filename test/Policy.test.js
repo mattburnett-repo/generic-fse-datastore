@@ -2,18 +2,33 @@
 
 const { request, persistedRequest, expect } = require('./testConfig')
 
-describe('API Policy routes', () => {
-    // TODO: Figure out how to deal with: Uncaught Error: listen EADDRINUSE: address already in use :::4000
-    //      You can run either tests or dev, but not both
-    //          tests with --watch have "already in use error"
-    //      spec.js: https://glebbahmutov.com/blog/how-to-correctly-unit-test-express-server/
-    //      probably should use before() / after(() => { server.close() }), but this doesn't seem to work...
+// const express = require('express')
+// const app = express()
+// const loaders = require('../loaders')
+// loaders(app)
 
+// const request = require('supertest')
+// const { expect } = require('chai')
+
+describe('API Policy routes', () => {
     let response, attributes;
+
+    // before(async () => {
+    //     server = await app.listen(() => {
+    //         console.log('server started')
+    //     })
+    //     console.log('before tests')
+    // })
+    // after(async () => {
+    //     await server?.close()
+    //     console.log('after tests')
+    // })
 
     describe('GET', () => {
         it('should get all policies', async () => {
             response = await request.get("/api/v1/policy")
+
+            // console.log(response.body.message)
         
             expect(response.status).to.eql(200)
 
