@@ -3,12 +3,7 @@ if(process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-var express = require('express');
-var app = express();
-
-const loaders = require('./loaders');
-loaders(app); 
-
+const app = require('./server.js')
 var PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
