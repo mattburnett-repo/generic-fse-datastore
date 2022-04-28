@@ -29,7 +29,7 @@ describe('API Policy routes', () => {
     let server, response, attributes;    
 
     // before(async () => {     
-    //         // delete require.cache[require.resolve('./testServer')];
+    //         delete require.cache[require.resolve('../server.js')];
     //         console.log('before tests')
     //         server = await app.listen(() => {
     //         console.log('server started')   

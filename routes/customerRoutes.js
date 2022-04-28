@@ -7,7 +7,7 @@ module.exports = (app) => {
   app.use('/api/v1/customer', router);
 
   router.get('/', async function(req, res) {
-    const queryString = "SELECT * FROM customer";
+    const queryString = "SELECT * FROM customer ORDER BY id";
     
     try {
       const result = await db.query(queryString);
