@@ -1,5 +1,5 @@
 
-const expressLoader = require('../loaders/expressLoader');
+// const expressLoader = require('../loaders/expressLoader');
 const { request, expect } = require('./testConfig')
 
 // const app = require ('../server.js')
@@ -89,58 +89,6 @@ describe('API Policy routes', () => {
             expect(response.status).to.eql(400)
             expect(response.body).to.include.keys("message")
             expect(response.body.message).to.include("Error in policyRoutes.patch:")
-        })
-
-        it('should patch customer first name based on policy id', async () => {
-            response = await request.patch("/api/v1/policy/")
-                                            .send({id: 1, firstName: 'test firstName'}) 
-
-            expect(response.status).to.eql(200)
-
-            const result = response.body
-            expect(result).to.include.keys('id', 'first_name', 'last_name', 'date_of_birth')
-            expect(result.id).to.eql(1)
-            expect(result.first_name).to.eql('test firstName')
-            expect(result.last_name).to.eql('lastName 01')
-            expect(result.date_of_birth).to.eql('1969-12-31T23:00:00.000Z')
-        })
-        it('should reset original first name value', async () => {
-            response = await request.patch("/api/v1/policy/")
-                                            .send({id: 1, firstName: 'firstName 01'})
-            expect(response.status).to.eql(200)    
-            
-            const result = response.body
-            expect(result).to.include.keys('id', 'first_name', 'last_name', 'date_of_birth')
-            expect(result.id).to.eql(1)
-            expect(result.first_name).to.eql('firstName 01')
-            expect(result.last_name).to.eql('lastName 01')
-            expect(result.date_of_birth).to.eql('1969-12-31T23:00:00.000Z')     
-        })
-
-        it('should patch customer last name based on policy id', async () => {
-            response = await request.patch("/api/v1/policy/")
-                                            .send({id: 1, lastName: 'test lastName'})
-
-            expect(response.status).to.eql(200)
-            
-            const result = response.body
-            expect(result).to.include.keys('id', 'first_name', 'last_name', 'date_of_birth')
-            expect(result.id).to.eql(1)
-            expect(result.first_name).to.eql('firstName 01')
-            expect(result.last_name).to.eql('test lastName')
-            expect(result.date_of_birth).to.eql('1969-12-31T23:00:00.000Z')  
-        })
-        it('should reset original last name value', async () => {
-            response = await request.patch("/api/v1/policy/")
-                                            .send({id: 1, lastName: 'lastName 01'})
-            expect(response.status).to.eql(200)    
-            
-            const result = response.body
-            expect(result).to.include.keys('id', 'first_name', 'last_name', 'date_of_birth')
-            expect(result.id).to.eql(1)
-            expect(result.first_name).to.eql('firstName 01')
-            expect(result.last_name).to.eql('lastName 01')
-            expect(result.date_of_birth).to.eql('1969-12-31T23:00:00.000Z')    
         })
 
         it('should patch policy number based on policy id', async () => {

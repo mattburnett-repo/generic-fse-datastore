@@ -1,3 +1,4 @@
+
 var express = require('express');
 var router = express.Router();
 
@@ -40,4 +41,31 @@ module.exports = (app) => {
       res.status(400).send({message: e.message});
     }
   });
+
+  router.patch('/', async (req, res) => {
+    try {
+      const customerId = req.body.id
+      const keys = Object.keys(req.body)
+
+      let queryString, theVals, result
+
+      if(keys.includes('firstName')) {
+        queryString = `UPDATE customer SET first_name = $1 WHERE id = $2 RETURNING *`
+        theVals = [req.body.firstName, parseInt(customerId, 10)]
+        result = await db.query(queryString, theVals);
+  
+        res.status(200).send(result.rows[0])
+      } else if (keys.includes('lastName')) {
+        queryString = `UPDATE customer SET last_name = $1 WHERE id = $2 RETURNING *`
+        theVals = [req.body.lastName, parseInt(customerId, 10)]
+        result = await db.query(queryString, theVals);
+  
+        res.status(200).send(result.rows[0])
+      } else {
+        throw new Error(`Can't determine which field to update. Received ${Object.entries(req.body)} for policyId ${policyId}`)
+      }
+    } catch (e) {
+      res.status(400).send({message: `Error in policyRoutes.patch:  ${e.message}`})
+    }
+  })
 }

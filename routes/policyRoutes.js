@@ -47,33 +47,13 @@ module.exports = (app) => {
       const policyId = req.body.id
       const keys = Object.keys(req.body)
 
-      let customerId, queryString, theVals, result
-
-      const getCustomerIdFromPolicyId = async (policyId) => {
-        const result = await db.query(`SELECT customer_id FROM policy WHERE id = ${policyId}`);
-
-        return result.rows[0].customer_id
-      }
+      let queryString, theVals, result
 
       // look at the keys of the request body object
       //    if we have a var that we are looking for in the keys,
       //      then we have a value for that key in req.body
       //    update the key field with the provided value
-      if(keys.includes('firstName')) {
-        customerId = await getCustomerIdFromPolicyId(policyId)
-        queryString = `UPDATE customer SET first_name = $1 WHERE id = $2 RETURNING *`
-        theVals = [req.body.firstName, parseInt(customerId, 10)]
-        result = await db.query(queryString, theVals);
-
-        res.status(200).send(result.rows[0])
-      } else if (keys.includes('lastName')) {
-        customerId = await getCustomerIdFromPolicyId(policyId)
-        queryString = `UPDATE customer SET last_name = $1 WHERE id = $2 RETURNING *`
-        theVals = [req.body.lastName, parseInt(customerId, 10)]
-        result = await db.query(queryString, theVals);
-
-        res.status(200).send(result.rows[0])
-      } else if (keys.includes('policyNumber')) {
+      if (keys.includes('policyNumber')) {
         queryString = `UPDATE policy SET policy_number = $1 WHERE id = $2 RETURNING *`
         theVals = [req.body.policyNumber, parseInt(policyId, 10)]
         result = await db.query(queryString, theVals);
