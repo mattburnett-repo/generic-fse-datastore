@@ -61,24 +61,24 @@ module.exports = (app) => {
       //    update the key field with the provided value
       if(keys.includes('firstName')) {
         customerId = await getCustomerIdFromPolicyId(policyId)
-        queryString = `UPDATE customer SET first_name = $1 WHERE id = $2`
+        queryString = `UPDATE customer SET first_name = $1 WHERE id = $2 RETURNING *`
         theVals = [req.body.firstName, parseInt(customerId, 10)]
         result = await db.query(queryString, theVals);
 
-        res.status(200).send({message: `policyRoutes.patch --- policyId: ${policyId}, firstName: ${req.body.firstName}`})
+        res.status(200).send(result.rows[0])
       } else if (keys.includes('lastName')) {
         customerId = await getCustomerIdFromPolicyId(policyId)
-        queryString = `UPDATE customer SET last_name = $1 WHERE id = $2`
+        queryString = `UPDATE customer SET last_name = $1 WHERE id = $2 RETURNING *`
         theVals = [req.body.lastName, parseInt(customerId, 10)]
         result = await db.query(queryString, theVals);
 
-        res.status(200).send({message: `policyRoutes.patch --- policyId: ${policyId}, lastName: ${req.body.lastName}`})
+        res.status(200).send(result.rows[0])
       } else if (keys.includes('policyNumber')) {
-        queryString = `UPDATE policy SET policy_number = $1 WHERE id = $2`
+        queryString = `UPDATE policy SET policy_number = $1 WHERE id = $2 RETURNING *`
         theVals = [req.body.policyNumber, parseInt(policyId, 10)]
         result = await db.query(queryString, theVals);
 
-        res.status(200).send({message: `policyRoutes.patch --- policyId: ${policyId}, policyNumber: ${req.body.policyNumber}`})
+        res.status(200).send(result.rows[0])
       } else {
         throw new Error(`Can't determine which field to update. Received ${Object.entries(req.body)} for policyId ${policyId}`)
       }
