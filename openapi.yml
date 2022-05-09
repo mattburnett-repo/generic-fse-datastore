@@ -2,9 +2,9 @@
 openapi: "3.0.0"
 
 info:
-  title: "FSE Code Challenge Datastore REST API"
+  title: "Generic FSE Code Challenge Datastore REST API"
   version: "1.0.0"
-  description: "Basic endpoints for the FSE Code Challenge"
+  description: "Basic endpoints for a generic FSE Code Challenge"
 
 tags:
 - name: "Customer"
