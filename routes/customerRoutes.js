@@ -61,11 +61,17 @@ module.exports = (app) => {
         result = await db.query(queryString, theVals);
   
         res.status(200).send(result.rows[0])
+      } else if (keys.includes('dateOfBirth')) {
+        queryString = `UPDATE customer SET date_of_birth = $1 WHERE id = $2 RETURNING *`
+        theVals = [req.body.dateOfBirth, parseInt(customerId, 10)]
+        result = await db.query(queryString, theVals);
+
+        res.status(200).send(result.rows[0])
       } else {
-        throw new Error(`Can't determine which field to update. Received ${Object.entries(req.body)} for policyId ${policyId}`)
+        throw new Error(`Can't determine which field to update. Received ${Object.entries(req.body)} for customerId ${customerId}`)
       }
     } catch (e) {
-      res.status(400).send({message: `Error in policyRoutes.patch:  ${e.message}`})
+      res.status(400).send({message: `Error in customerRoutes.patch:  ${e.message}`})
     }
   })
 }
