@@ -5,7 +5,7 @@ const insuranceTypeRouter = require('./insuranceTypeRoutes');
 const policyStatusRouter = require('./policyStatusRoutes');
 const providerRouter = require('./providerRoutes')
 
-module.exports = (app) => {
+module.exports = (app: any) => {
   // authRouter(app);
   policyRouter(app);
   customerRouter(app);

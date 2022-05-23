@@ -4,10 +4,10 @@ var router = express.Router();
 
 var db = require('../db');
 
-module.exports = (app) => {
+module.exports = (app: any) => {
   app.use('/api/v1/customer', router);
 
-  router.get('/', async function(req, res) {
+  router.get('/', async function(req: any, res: any) {
     const queryString = "SELECT * FROM customer ORDER BY id";
     
     try {
@@ -18,12 +18,12 @@ module.exports = (app) => {
       } else {
         res.status(400).send();
       }   
-    } catch(e) {
+    } catch(e: any) {
       res.status(400).send({message: e.message});
     }
   });
 
-  router.get('/:id',  async function(req, res) {
+  router.get('/:id',  async function(req: any, res: any) {
     const { id } = req.params;
     const queryString = "SELECT * FROM customer WHERE id = $1";
 
@@ -37,12 +37,12 @@ module.exports = (app) => {
       } else {
         res.status(400).send();
       }    
-    } catch(e) {
+    } catch(e: any) {
       res.status(400).send({message: e.message});
     }
   });
 
-  router.patch('/', async (req, res) => {
+  router.patch('/', async (req: any, res: any) => {
     try {
       const customerId = req.body.id
       const keys = Object.keys(req.body)
@@ -70,7 +70,7 @@ module.exports = (app) => {
       } else {
         throw new Error(`Can't determine which field to update. Received ${Object.entries(req.body)} for customerId ${customerId}`)
       }
-    } catch (e) {
+    } catch (e: any) {
       res.status(400).send({message: `Error in customerRoutes.patch:  ${e.message}`})
     }
   })

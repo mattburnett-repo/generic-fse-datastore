@@ -3,11 +3,11 @@ var router = express.Router();
 
 var db = require('../db');
 
-module.exports = (app) => {
-  app.use('/api/v1/insurance-type', router);
+module.exports = (app: any) => {
+  app.use('/api/v1/policy-status', router);
 
-  router.get('/', async function(req, res) {
-    const queryString = "SELECT * FROM insurance_type";
+  router.get('/', async function(req: any, res: any) {
+    const queryString = "SELECT * FROM policy_status";
     
     try {
       const result = await db.query(queryString);
@@ -17,14 +17,14 @@ module.exports = (app) => {
       } else {
         res.status(400).send();
       }   
-    } catch(e) {
+    } catch(e: any) {
       res.status(400).send({message: e.message});
     }
   });
 
-  router.get('/:id', async function(req, res) {
+  router.get('/:id', async function(req: any, res: any) {
     const { id } = req.params;
-    const queryString = "SELECT * FROM insurance_type WHERE id = $1";
+    const queryString = "SELECT * FROM policy_status WHERE id = $1";
 
     try {
       const result = await db.query(queryString, [parseInt(id, 10)]);
@@ -32,11 +32,11 @@ module.exports = (app) => {
       if(result.rowCount > 0) {
         res.status(200).send(result.rows[0]); 
       } else if (result.rowCount === 0) {
-        res.status(400).send([{'message': `insurance type id ${id} not found`}]);
+        res.status(400).send([{'message': `policy status id ${id} not found`}]);
       } else {
         res.status(400).send();
       }    
-    } catch(e) {
+    } catch(e: any) {
       res.status(400).send({message: e.message});
     }
   });

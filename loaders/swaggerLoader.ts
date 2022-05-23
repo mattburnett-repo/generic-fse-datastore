@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const swaggerDocument = yaml.load(fs.readFileSync(path.resolve(__dirname, '../openapi.yml'), 'utf8'));
 
-module.exports = (app) => {
+module.exports = (app: any) => {
     app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
     return app;

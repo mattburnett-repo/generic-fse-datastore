@@ -9,7 +9,7 @@ var cors = require('cors');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-module.exports = (app) => {
+module.exports = (app: any) => {
     const corsOptions = {
         origin: process.env.REACT_APP_APP_BASE_URL,
         credentials: true
