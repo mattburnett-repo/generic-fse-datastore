@@ -3,7 +3,7 @@
 
 const app = require('./server.js')
 
-app.listen(4100, () => {
+app.listen(0, () => {
   console.log(`TEST SERVER is listening on random port`);
 })
 

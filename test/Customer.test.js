@@ -16,7 +16,7 @@ describe('API Customer routes', () => {
             expect(attributes[0].id).to.eql(1)
             expect(attributes[0].first_name).to.equal('firstName 01')
             expect(attributes[0].last_name).to.equal("lastName 01")
-            expect(attributes[0].date_of_birth).to.equal("1970-01-14T23:00:00.000Z")
+            expect(attributes[0].date_of_birth).to.equal("1969-12-31T23:00:00.000Z")
         });
         it('should get a customer by id', async () => {
             const response = await request.get("/api/v1/customer/1")
@@ -29,7 +29,7 @@ describe('API Customer routes', () => {
             expect(attributes.id).to.eql(1)
             expect(attributes.first_name).to.equal('firstName 01')
             expect(attributes.last_name).to.equal("lastName 01")
-            expect(attributes.date_of_birth).to.equal("1970-01-14T23:00:00.000Z")
+            expect(attributes.date_of_birth).to.equal("1969-12-31T23:00:00.000Z")
         })
     })
     describe("PATCH", () => {
@@ -51,7 +51,7 @@ describe('API Customer routes', () => {
             expect(result.id).to.eql(1)
             expect(result.first_name).to.eql('test firstName')
             expect(result.last_name).to.eql('lastName 01')
-            expect(result.date_of_birth).to.eql('1970-01-14T23:00:00.000Z')
+            expect(result.date_of_birth).to.eql('1969-12-31T23:00:00.000Z')
         })
         it('should reset original first name value', async () => {
             response = await request.patch("/api/v1/customer/")
@@ -63,7 +63,7 @@ describe('API Customer routes', () => {
             expect(result.id).to.eql(1)
             expect(result.first_name).to.eql('firstName 01')
             expect(result.last_name).to.eql('lastName 01')
-            expect(result.date_of_birth).to.eql('1970-01-14T23:00:00.000Z')     
+            expect(result.date_of_birth).to.eql('1969-12-31T23:00:00.000Z')     
         })
         it('should patch customer last name based on customer id', async () => {
             response = await request.patch("/api/v1/customer/")
@@ -76,7 +76,7 @@ describe('API Customer routes', () => {
             expect(result.id).to.eql(1)
             expect(result.first_name).to.eql('firstName 01')
             expect(result.last_name).to.eql('test lastName')
-            expect(result.date_of_birth).to.eql('1970-01-14T23:00:00.000Z')  
+            expect(result.date_of_birth).to.eql('1969-12-31T23:00:00.000Z')  
         })
         it('should reset original last name value', async () => {
             response = await request.patch("/api/v1/customer/")
@@ -88,7 +88,7 @@ describe('API Customer routes', () => {
             expect(result.id).to.eql(1)
             expect(result.first_name).to.eql('firstName 01')
             expect(result.last_name).to.eql('lastName 01')
-            expect(result.date_of_birth).to.eql('1970-01-14T23:00:00.000Z')    
+            expect(result.date_of_birth).to.eql('1969-12-31T23:00:00.000Z')    
         })   
     })
 })
