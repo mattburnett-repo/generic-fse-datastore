@@ -11,7 +11,7 @@ var bodyParser = require('body-parser');
 
 module.exports = (app: any) => {
     const corsOptions = {
-        origin: process.env.REACT_APP_APP_BASE_URL,
+        origin: process.env.CLIENT_APP_BASE_URL,
         credentials: true
       };
 
