@@ -41,12 +41,7 @@ Create the database following instructions in the 'Database' section, below.
 
 Start the app in dev mode (nodemon)
 ```bash
-npm run dev
-```
-
-Start the app (node)
-```bash
-npm run start
+npm run ts
 ```
 
 ### Database
